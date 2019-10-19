@@ -10,6 +10,9 @@ function expressionCalculator(expr) {
                     "(" : 3, ")" : 3
                                     };
 
+    function calc(fn) {
+        return new Function('return ' + fn)();
+  }
 
     function calculate(num1, oper, num2) {
         var result;
@@ -39,7 +42,7 @@ function expressionCalculator(expr) {
     
     let commonArray = expr.split(/\s+/g);
  
-console.log(commonArray)
+
 
     for(let i = 0; i < commonArray.length; i++) {
         if(operator[commonArray[i]] == 2 && operator[commonArray[i + 1] != 3]){
@@ -47,8 +50,8 @@ console.log(commonArray)
         expr = expr.splice((i - 1), 3, result);
         }
      }
-     console.log(expr)
-    return expr;
+    
+    return calc(expr);
     
 }
 
